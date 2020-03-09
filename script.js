@@ -1,5 +1,4 @@
-var arrayBreweryObjects = [];
-var arrayStatesObjects=[]; 
+let arrayBreweryObjects = [];
 
  class Brewery{
     
@@ -29,10 +28,10 @@ var arrayStatesObjects=[];
     
     module.exports = {
     
-    fun:
+    fun2:
     function ty(json){
 
-        for (var i=0; i< json.length; i++) { 
+        for (let i=0; i< json.length; i++) { 
             arrayBreweryObjects.push(
               new Brewery(
                 json[i].id, 
@@ -50,32 +49,15 @@ var arrayStatesObjects=[];
                 json[i].updated_at,
                 json[i].tag_list,
                )); 
-                
-        
-                // arrayStatesObjects.push(
-                //     json[i].state 
-                // )  
-    }  
-
-    // the task 2
-    //console.log(arrayBreweryObjects) 
+        }  
     },
 
-    fun2: 
+    fun3: 
     getAddress = function getFullAddres(fullBreweryName){
 
-        var fullBreweryAddress;
+        let fullBreweryAddress;
 
         for(let i = 0; i < arrayBreweryObjects.length; i++){
-    
-            //  без проверки полей
-            //  fullBrewerAddress = arrayBreweryObjects[i].map((item) => ({
-                //   postal_code: item.postal_code,
-                //   country: item.country,
-                //   state: item.state,
-                //   city: item.city,
-                //   street: item.street
-            //   }));
             
             if(arrayBreweryObjects[i].getName === fullBreweryName){
                 
@@ -84,17 +66,14 @@ var arrayStatesObjects=[];
                                     +" |state: "+arrayBreweryObjects[i].state
                                     +" |city: "+arrayBreweryObjects[i].city
                                     +" |street: "+arrayBreweryObjects[i].street+"]";
-
-                console.log(fullBreweryAddress);  
+  
                 return fullBreweryAddress;  
             }
         }    
     },
     
-    fun3:
-    function Obj(NameState){
-
-        //arrayStatesObjects = Array.from(new Set(arrayStatesObjects));
+    fun4:
+    function getListAddresses(){
 
         let k = {
              Alabama: [],
@@ -121,7 +100,7 @@ var arrayStatesObjects=[];
     },
 
     fun5:
-    function(){
+    function getNoMicro(){
 
         let id_table = [];
         let id_name = [];
@@ -132,8 +111,6 @@ var arrayStatesObjects=[];
         for(let i = 0; i < arrayBreweryObjects.length; i++){
             if(arrayBreweryObjects[i].brewery_type != 'micro'){
                 
-                console.log(arrayBreweryObjects[i]);
-
                 id_table.push(arrayBreweryObjects[i].id);
                 id_name.push(arrayBreweryObjects[i].name);
                 id_address.push(getAddress(arrayBreweryObjects[i].name));
