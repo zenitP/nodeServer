@@ -6,7 +6,7 @@ const http = require('http');
 request('https://api.openbrewerydb.org/breweries', (error, response, body) => {
   
 if (!error && response.statusCode == 200) {
- 
+        
     // the task 1
     let fullListOfBreweries = JSON.stringify(JSON.parse(body));
       
@@ -43,6 +43,7 @@ if (!error && response.statusCode == 200) {
                             <head>
                                 <meta charset="utf-8">
                                 <title>Задание 5</title>
+                               
                             </head>
                             <body> 
                             <table border="1" width = "100%">
@@ -51,28 +52,29 @@ if (!error && response.statusCode == 200) {
                                     <th>Телефон</th><th>Адрес сайта</th>
                                 </tr>
                                 `+struct_table+`
-                            </table>        
+                            </table>    
                             </body>
-                        </html> `;
+                        </html>`;
 
     http.createServer((request, response) => {
         
-        // for tasks *, 4, you need to change {'Content-Type': 'application/json'}
-        response.writeHead(200, { 'Content-Type': 'text/html, charset=utf-8'});
+        switch(request.url){
 
-        // variables for other tasks
-        // * fullListOfBreweries
-        // 4 listOfBreweriesAddresses
-        // 5 resultTableHtml
-
-        // demonstration of task 5
-        response.end(resultTableHtml);
+            case '/': 
+                response.writeHead(200, { 'Content-Type': 'application/json, charset=utf-8'});
+                response.end(fullListOfBreweries);
+            case '/task4':
+                response.writeHead(200, { 'Content-Type': 'application/json, charset=utf-8'});
+                response.end(listOfBreweriesAddresses);
+            case '/task5':
+                response.writeHead(200, { 'Content-Type': 'text/html, charset=utf-8'});
+                response.end(resultTableHtml);
+            default:
+                response.writeHead(404, { 'Content-Type': 'text/plain, charset=utf-8'});
+                response.end('404 - Not found');
+        }
      
     }).listen(8080, () => console.log('........................server is running'));
 
   }
 });
-
-
-
-
