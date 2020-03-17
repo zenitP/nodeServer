@@ -5,4 +5,4 @@
 
 --------------------------------------------------------------------------------------
 * You can stop the server with the command: pgrep node |xargs kill -9
-* Сheck port 8080 for "busy", command: lsof -i tcp:8080
+* Сheck port 8080 for "busy", command: lsof -i tcp: 8080
