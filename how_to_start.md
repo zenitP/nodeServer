@@ -6,4 +6,4 @@
 --------------------------------------------------------------------------------------
 * you can stop the server with the command: pgrep node |xargs kill -9
 * check port 8080 for "busy", command: lsof -i tcp: 8080
-* If the browser does not support json data display, you can install the plugin https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc
+* If the browser does not support json data display, you can install the plugin https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc (on the example of a browser google chrome). Mozilla Firefox does not require additional installation.
