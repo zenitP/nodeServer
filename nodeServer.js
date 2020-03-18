@@ -19,7 +19,13 @@ if (!error && response.statusCode == 200) {
     // console.log(pathToScript.fun3(defaultBreweryName));
 
     // variable for task 4
-    let listOfBreweriesAddresses = JSON.stringify(pathToScript.fun4());
+    let listOfBreweriesAddresses = [];
+   
+    for (let entry of pathToScript.fun4()) { 
+        listOfBreweriesAddresses.push(entry);
+    }
+
+    listOfBreweriesAddresses = JSON.stringify(listOfBreweriesAddresses);
 
     // variables for task 5
     let id = [];
