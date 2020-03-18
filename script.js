@@ -1,4 +1,5 @@
 let arrayBreweryObjects = [];
+let arrayStatesObjects = [];
 
  class Brewery{
     
@@ -48,7 +49,9 @@ let arrayBreweryObjects = [];
                 json[i].website_url,
                 json[i].updated_at,
                 json[i].tag_list,
-               )); 
+                )); 
+          
+                arrayStatesObjects.push(json[i].state);
         }  
     },
 
@@ -74,29 +77,32 @@ let arrayBreweryObjects = [];
     
     fun4:
     function getListAddresses(){
+     
+        arrayStatesObjects = Array.from(new Set(arrayStatesObjects));
+          
+        // state => brewery_1.address
+        //       => brewery_2.address
+        let maps = new Map();
 
-        let k = {
-             Alabama: [],
-             Alaska: [],
-             Arizona: [],
-             Arkansas: []
-            };
+        let breweryRepeatOk;
+        
+        for (let i = 0; i < arrayStatesObjects.length; i++) {
 
-            for(let j= 0; j < arrayBreweryObjects.length; j++){
-                if(arrayBreweryObjects[j].state == "Alabama"){
-                    k.Alabama.push(getAddress(arrayBreweryObjects[j].name));
-                }else 
-                    if(arrayBreweryObjects[j].state == "Alaska"){
-                        k.Alaska.push(getAddress(arrayBreweryObjects[j].name));
-                    }else   
-                        if(arrayBreweryObjects[j].state == "Arizona"){
-                            k.Arizona.push(getAddress(arrayBreweryObjects[j].name));
-                        }else   
-                            if(arrayBreweryObjects[j].state == "Arkansas"){
-                                k.Arkansas.push(getAddress(arrayBreweryObjects[j].name));
-                            }
-            }  
-            return k;  
+            breweryRepeatOk = [];
+
+            for (let j = 0; j < arrayBreweryObjects.length; j++) {
+                
+                if (arrayStatesObjects[i] === arrayBreweryObjects[j].state) {
+                    breweryRepeatOk.push(getAddress(arrayBreweryObjects[j].name));               
+                }  
+
+                if (j == arrayBreweryObjects.length-1) {
+                    maps.set(arrayStatesObjects[i], breweryRepeatOk);
+                }
+            }
+        }
+
+        return maps;  
     },
 
     fun5:
